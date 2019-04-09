@@ -4,10 +4,10 @@ const cheerio = require('cheerio');
 
 const rq = (type, name, page) => {
   if (page) {
-    return request(`http://mp3.zing.vn/nghe-si/${name}/${type}?&page=${page}`);
+    return request(`https://mp3.zing.vn/nghe-si/${name}/${type}?&page=${page}`);
   }
 
-  return request(`http://mp3.zing.vn/nghe-si/${name}/${type}`);
+  return request(`https://mp3.zing.vn/nghe-si/${name}/${type}`);
 };
 
 module.exports = function getArtist(req, res, next) {

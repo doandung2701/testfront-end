@@ -4,7 +4,8 @@ const { request } = require('utils');
 
 module.exports = function (req, res, next) {
   const { id } = req.params;
-
+  console.log(req.params);
+  
   request(`http://mp3.zing.vn/json/charts?op=get&type=song&id=${id}`)
     .then(data => {
       // redisClient.set(getRedisKey(req), data, 'EX', 60 * 60 * 24 * 5);

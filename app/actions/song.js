@@ -15,11 +15,11 @@ export function fetchSong(name, id) {
     dispatch({ type: types.START_FETCHING_SONG });
 
     axios.get(`/api/media/song?name=${name}&id=${id}`)
-    .then(resp => {
-      const url = resp.data;
-      return axios.get(`https://mp3.zing.vn/xhr/${url}`)
+    .then(resp => {      
+      const data = resp.data;            
+      return axios.get(`https://mp3.zing.vn/xhr/media/get-source?type=${data.type}&key=${data.code}`)
     })
-    .then(({ data: { data } }) => {
+    .then(({ data: { data } }) => {      
       axios.get(data.lyric)
         .then(({ data: lrcString }) => {
           data.lyric = lrcParser(lrcString).scripts;

@@ -13,7 +13,7 @@ module.exports = function getSong(req, res, next) {
     const match = html.match(regex);
     
     if (!match) throw new Error("can't find the resource URL");
-
+    
     const [matchUrl] = match;
     const resource = yield request(`https://mp3.zing.vn/xhr/media/get-source?type=audio&${matchUrl}`);
     const data = JSON.parse(resource).data;
@@ -24,7 +24,7 @@ module.exports = function getSong(req, res, next) {
     }
 
     const lrcFile = yield request(data.lyric);
-    data.lyric = lrcParser(lrcFile).scripts;
+    data.lyric = lrcParser(lrcFile).scripts;    
     return data;
   })
   .then(data => res.json(data))
